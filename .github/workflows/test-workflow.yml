@@ -1,0 +1,14 @@
+on:
+  workflow_call:
+    inputs:
+      test:
+        type: string
+        required: true
+jobs:
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "Hello, world!"
+        env:
+          TEST: ${{ inputs.test }}
