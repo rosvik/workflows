@@ -18,3 +18,23 @@ Build and push amd64 and arm64 containers to a registry. It is made for easy int
 ### Secrets
 
 - `registry_password`: The password to use when authenticating with the registry.
+
+### Example
+
+```yaml
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  build:
+    uses: rosvik/workflows/.github/workflows/push-container.yml@main
+    with:
+      containerfile: Containerfile
+      image: rosvik/hello
+      tag: ${{ github.ref_name }} # git tag or short branch name
+      registry_url: cubby.no
+      registry_username: rosvik
+    secrets:
+      registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+```
