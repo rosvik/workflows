@@ -16,6 +16,9 @@ on:
       registry_username:
         type: string
         required: true
+      build_args:
+        type: string
+        required: false
     secrets:
       registry_password:
         required: true
@@ -36,6 +39,7 @@ jobs:
           oci: true
           layers: true
           containerfiles: ${{ inputs.containerfile }}
+          build_args: ${{ inputs.build_args }}
       - name: Push To Registry
         id: push-to-cubby
         uses: redhat-actions/push-to-registry@v2
@@ -70,6 +74,7 @@ jobs:
           oci: true
           layers: true
           containerfiles: ${{ inputs.containerfile }}
+          build_args: ${{ inputs.build_args }}
       - name: Push To Registry
         id: push-to-cubby
         uses: redhat-actions/push-to-registry@v2
