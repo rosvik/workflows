@@ -21,13 +21,17 @@ Build and push amd64 and arm64 containers to a registry. It is made for easy int
 
 ### Example
 
+`.github/workflows/push-container.yml`
+
 ```yaml
+name: Push Container
 on:
   push:
     branches:
-      - 'main'
+      - main
 jobs:
-  build:
+  push-container:
+    name: Push Container
     uses: rosvik/workflows/.github/workflows/push-container.yml@main
     with:
       containerfile: Containerfile
