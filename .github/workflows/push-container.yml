@@ -58,10 +58,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # The arm runner doesn't come with buildah and podman preinstalled
-      - name: Set up Buildah and Podman
+      - name: Install Buildah and Podman
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: buildah podman
+          version: 1.0
+      - name: Configure default registries
         run: |
-          sudo apt-get update
-          sudo apt-get install -y buildah podman
           printf "[registries.search] \nregistries = ['quay.io', 'docker.io']\n" > registries.conf
           sudo mv registries.conf /etc/containers/registries.conf
       - name: Build Image
