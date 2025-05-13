@@ -43,3 +43,47 @@ jobs:
     secrets:
       registry_password: ${{ secrets.REGISTRY_PASSWORD }}
 ```
+
+## Cubbyman Reload
+
+Reload [Cubbyman](https://github.com/rosvik/cubbyman) after a new container has been pushed to the registry.
+
+### Inputs
+
+- `base_url`: The base URL of the Cubbyman instance. A POST request will be made to `{base_url}/cubbyman/v1/reload`.
+
+### Secrets
+
+- `credentials`: The credentials to use to authenticate with the Cubbyman instance. Format: `username:password`.
+
+### Example
+
+`.github/workflows/push-container.yml`
+
+```yaml
+name: Push Container
+on:
+  push:
+    branches:
+      - main
+jobs:
+  push-container:
+    name: Push Container
+    uses: rosvik/workflows/.github/workflows/push-container.yml@main
+    with:
+      containerfile: Containerfile
+      image: rosvik/hello
+      tag: ${{ github.ref_name }} # git tag or short branch name
+      registry_url: cubby.no
+      registry_username: rosvik
+    secrets:
+      registry_password: ${{ secrets.REGISTRY_PASSWORD }}
+  cubbyman-reload:
+    name: Cubbyman Reload
+    needs: push-container
+    uses: rosvik/workflows/.github/workflows/cubbyman-reload.yml@main
+    with:
+      base_url: https://cubby.no
+    secrets:
+      credentials: ${{ secrets.CUBBYMAN_CREDENTIALS }}
+```

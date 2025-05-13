@@ -1,0 +1,17 @@
+on:
+  workflow_call:
+    inputs:
+      base_url:
+        type: string
+        required: true
+    secrets:
+      credentials:
+        required: true
+jobs:
+  cubbyman-reload:
+    name: Cubbyman Reload
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST Cubbyman
+        run: |
+          curl -X POST --user ${{ secrets.credentials }} ${{ inputs.base_url }}/cubbyman/v1/reload
