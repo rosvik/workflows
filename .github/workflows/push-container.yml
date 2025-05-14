@@ -9,7 +9,7 @@ on:
         required: true
       tag:
         type: string
-        required: true
+        default: ${{ github.ref_name }}
       registry_url:
         type: string
         required: true
