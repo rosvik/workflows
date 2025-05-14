@@ -9,7 +9,7 @@ on:
         required: true
       tag:
         type: string
-        default: ${{ github.ref_name }}
+        default: ${{ github.ref_name }} # git tag or short branch name
       registry_url:
         type: string
         required: true
