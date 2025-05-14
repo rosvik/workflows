@@ -5,7 +5,7 @@
 Build and push amd64 and arm64 containers to a registry. It is made for easy integration with [Container Cubby](https://github.com/rosvik/container-cubby), which is why it only supports basic auth for now.
 
 > [!IMPORTANT]
-> This workflow uses the `ubuntu-24.04-arm` runner, which currently is only available by default for public repositories.
+> This workflow uses the `ubuntu-24.04-arm` runner, which is only available for public repositories by default.
 
 ### Inputs
 
@@ -58,10 +58,10 @@ Reload [Cubbyman](https://github.com/rosvik/cubbyman) after a new container has 
 
 ### Example
 
-`.github/workflows/push-container.yml`
+`.github/workflows/deploy.yml`
 
 ```yaml
-name: Push Container
+name: Deploy
 on:
   push:
     branches:
