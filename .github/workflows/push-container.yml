@@ -57,13 +57,6 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
-      # The arm runner doesn't come with buildah and podman preinstalled
-      - name: Set up Buildah and Podman
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y buildah podman
-          printf "[registries.search] \nregistries = ['quay.io', 'docker.io']\n" > registries.conf
-          sudo mv registries.conf /etc/containers/registries.conf
       - name: Build Image
         id: build-image
         uses: redhat-actions/buildah-build@v2
