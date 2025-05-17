@@ -14,4 +14,4 @@ jobs:
     steps:
       - name: POST Cubbyman
         run: |
-          curl -X POST --user ${{ secrets.credentials }} ${{ inputs.base_url }}/cubbyman/v1/reload
+          curl -X POST --user ${{ secrets.credentials }} ${{ inputs.base_url }}/api/cubbyman/v1/reload
