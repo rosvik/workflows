@@ -41,7 +41,7 @@ jobs:
           containerfiles: ${{ inputs.containerfile }}
           build-args: ${{ inputs.build_args }}
       - name: Push To Registry
-        id: push-to-cubby
+        id: push-to-registry
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
@@ -50,7 +50,7 @@ jobs:
           username: ${{ inputs.registry_username }}
           password: ${{ secrets.registry_password }}
       - name: Print Image URL
-        run: echo "Image pushed to ${{ steps.push-to-cubby.outputs.registry-paths }}"
+        run: echo "Image pushed to ${{ steps.push-to-registry.outputs.registry-paths }}"
 
   build-arm64:
     name: Build and Push arm64 Image
@@ -69,7 +69,7 @@ jobs:
           containerfiles: ${{ inputs.containerfile }}
           build-args: ${{ inputs.build_args }}
       - name: Push To Registry
-        id: push-to-cubby
+        id: push-to-registry
         uses: redhat-actions/push-to-registry@v2
         with:
           image: ${{ steps.build-image.outputs.image }}
@@ -78,7 +78,7 @@ jobs:
           username: ${{ inputs.registry_username }}
           password: ${{ secrets.registry_password }}
       - name: Print Image URL
-        run: echo "Image pushed to ${{ steps.push-to-cubby.outputs.registry-paths }}"
+        run: echo "Image pushed to ${{ steps.push-to-registry.outputs.registry-paths }}"
 
   build-manifest:
     name: Create and Push Multi-Arch Manifest
