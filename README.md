@@ -5,7 +5,7 @@
 Build and push amd64 and arm64 containers to a registry. It is made for easy integration with [Container Cubby](https://github.com/rosvik/container-cubby), which is why it only supports basic auth for now.
 
 > [!IMPORTANT]
-> This workflow uses the [`ubuntu-24.04-arm`](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories) runner, which is only available for public repositories by default.
+> This workflow uses the [`ubuntu-24.04-arm`](https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories) runner, which is only available for public repositories by default. If don't have access to it, you can use the much slower [`push-container-qemu.yml`](.github/workflows/push-container-qemu.yml) workflow instead — usage instructions are the same.
 
 ### Inputs
 
