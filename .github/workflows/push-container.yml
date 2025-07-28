@@ -85,6 +85,13 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [build-amd64, build-arm64]
     steps:
+      - name: Authenticate
+        uses: redhat-actions/podman-login@v1
+        continue-on-error: true
+        with:
+          registry: ${{ inputs.registry_url }}
+          username: ${{ inputs.registry_username }}
+          password: ${{ secrets.registry_password }}
       - name: Create and Push Manifest
         run: |
           REPO=${{ inputs.registry_url }}/${{ inputs.image }}
