@@ -19,6 +19,9 @@ on:
       build_args:
         type: string
         required: false
+      context:
+        type: string
+        required: false
     secrets:
       registry_password:
         required: true
@@ -38,6 +41,7 @@ jobs:
           platforms: linux/amd64
           oci: true
           layers: true
+          context: ${{ inputs.context }}
           containerfiles: ${{ inputs.containerfile }}
           build-args: ${{ inputs.build_args }}
       - name: Push To Registry
@@ -66,6 +70,7 @@ jobs:
           platforms: linux/arm64
           oci: true
           layers: true
+          context: ${{ inputs.context }}
           containerfiles: ${{ inputs.containerfile }}
           build-args: ${{ inputs.build_args }}
       - name: Push To Registry
