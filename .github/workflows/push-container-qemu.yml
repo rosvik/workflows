@@ -29,7 +29,7 @@ on:
 jobs:
   build-and-push:
     name: Build and Push Images
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v5
       # Setup for multi architecture build
